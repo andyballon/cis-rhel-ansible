@@ -32,7 +32,7 @@
       fstype={{ item.fstype }}
       opts="nodev,nosuid,noexec"
     when: item.mount == "/tmp"
-    with_items: ansible_mounts
+    with_items: "{{ ansible_mounts }}"
     tags:
       - scored
       - section1.1
@@ -56,7 +56,7 @@
       fstype="none"
       opts="bind"
     when: item.mount == "/tmp"
-    with_items: ansible_mounts
+    with_items: "{{ ansible_mounts }}"
     tags:
       - scored
       - section1.1
@@ -87,14 +87,14 @@
       - section1.1.9
 
   - name: 1.1.10 Add nodev Option to /home Partition (Scored)
-    mount: >
+    mount: > 
       name="/home"
       src={{ item.device }}
       state=mounted
       fstype={{ item.fstype }}
       opts="nodev"
+    with_items: "{{ ansible_mounts }}"
     when: item.mount == "/home"
-    with_items: ansible_mounts
     tags:
       - scored
       - section1.1

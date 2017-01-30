@@ -54,7 +54,7 @@
 
   - name: 3.3 Disable Avahi Server (disable service) (Scored)
     service: >
-      name=avahi-daemon
+      name="avahi-daemon"
       state=stopped
       enabled=no
     when: "'enabled' in result3_3.stdout"
